@@ -24,68 +24,113 @@
 
 \subsection{Monolithic VS Microservice}
 \hspace{1.27cm}หาก Microservice เป็นการออกแบบ Service ให้มีขนาดเล็ก การจะเทียบให้เห็นภาพชัดเจนที่สุดก็ต้องเทียบกับ Monolithic ที่เป็นระบบที่มีขนาดใหญ่ โดย Monolithic จะเป็นระบบที่มีการทำงานทั้งหมดอยู่ใน Service เดียว
-Subsection 1 text
+% Subsection 1 text
+% \clearpage
+\begin{figure}[H] % 'H' forces placement exactly here
+% \begin{figure}[ht] % 'ht' means place it approximately here
+  \centering
+  \includegraphics[width=\linewidth, keepaspectratio]{pictures/monolithic-vs-microservices.png}
+  \caption[Poem]{รูปจาก nsights.daffodilsw.com}
+  % \label{fig:monolithic-vs-microservices}
+\end{figure}
 
-\subsubsection{Subsubsection 1 heading goes here}
-Subsubsection 1 text
 
-\subsubsection{Subsubsection 2 heading goes here}
-Subsubsection 2 text
+\subsubsection{ความแตกต่างระหว่าง Monolithic และ Microservice}
+\begin{itemize}
+  \item \textbf{Monolithic} เป็นชื่อของสถาปัตยกรรมการออกแบบซอฟต์แวร์หรือ Service ที่มีคนใช้งานเป็นจำนวนมากและมีมาอย่างยาวนาน โดยเป็นลักษณะของระบบที่การทำงานทุกอย่างจะรวมอยู่ในกลุ่มก้อนเดียวกัน และใช้งาน Database เดียวกัน (อย่างในภาพจะเห็นว่าเป็นเว็บไซต์ขายสินค้าที่มีฟังก์ชันจัดการผู้ใช้, ตะกร้าสินค้า และการส่งสินค้า รวมอยู่ด้วยกัน และใช้ฐานข้อมูลเดียวกัน)
+  \item \textbf{Microservice}  จะออกแบบโดยแยกการทำงานที่รวมกันเป็นก้อนใหญ่ๆของแบบ Monolithic ออกมาให้เล็กลงโดยอาจจะแยกตามบริการหรือตามฟังก์ชันการทำงานเลยก็ได้ (จากในภาพฟังก์ชันทั้งสามอย่างจะแยกออกจากกัน และไม่ได้ใช้ฐานข้อมูลเดียวกันในการเก็บข้อมูลอีกต่อไป เพราะแต่ละฟังก์ชันหรือบริการที่แยกออกมามีฐานข้อมูลเป็นของตัวเอง และสามารถติดต่อกันได้ผ่าน API )
+\end{itemize}
 
-\section{Third section}
-Section 3 text. The dielectric constant\index{dielectric constant}
-at the air-metal interface determines
-the resonance shift\index{resonance shift} as absorption or capture occurs
-is shown in Equation~\eqref{eq:dielectric}:
 
-\begin{equation}\label{eq:dielectric}
-k_1=\frac{\omega}{c({1/\varepsilon_m + 1/\varepsilon_i})^{1/2}}=k_2=\frac{\omega
-\sin(\theta)\varepsilon_\mathit{air}^{1/2}}{c}
-\end{equation}
 
-\noindent
-where $\omega$ is the frequency of the plasmon, $c$ is the speed of
-light, $\varepsilon_m$ is the dielectric constant of the metal,
-$\varepsilon_i$ is the dielectric constant of neighboring insulator,
-and $\varepsilon_\mathit{air}$ is the dielectric constant of air.
+
+\subsubsection{ข้อดีและข้อเสียของ Microservice}
+\begin{itemize}
+  \item ข้อดี
+  \begin{enumerate}
+    \item การทำงานหลักแต่ละส่วนของระบบ ถ้าเป็นไปได้ควรแยกออกเป็น service แต่ละอัน เช่นจัดการสินค้า กับจัดการการซื้อสินค้าก็แยกกันไปเลย
+    \item มีที่เก็บข้อมูลของตัวเอง
+  \end{enumerate}
+  \item ข้อเสีย
+  \begin{enumerate}
+    \item การจัดการระบบที่มีหลาย service อาจจะทำให้การจัดการระบบทำได้ยากขึ้น
+    \item การทำงานของระบบที่แยกออกมาอาจจะทำให้การทำงานของระบบช้าลง
+  \end{enumerate}
+\end{itemize}
+\clearpage
+\section{RabbitMQ}
+\hspace{1.27cm}RabbitMQ \cite{rabbitmq}ซอฟต์แวร์ที่เป็นตัวกลางรับส่งข้อความระหว่างแอปพลิเคชันต่างๆ ผู้ไปรับรับข้อความจากผู้ส่ง (แอปพลิเคชันหนึ่ง) เก็บไว้รอการคัดแยก และส่งต่อให้ผู้รับ (แอปพลิเคชันอีกแอปพลิเคชันหนึ่ง) เหมาะสำหรับการทำแอปพลิเคชันที่ต้องมีการจัดคิวในการส่งข้อความ ระบบที่เป็นไมโครเซอร์วิสเอาไว้สื่อสารกันได้อย่างมีประสิทธิภาพ ทำให้สามารถแบ่งงานขนาดใหญ่เป็นงานย่อยๆ และส่งไปยังระบบอื่นๆ เพื่อประมวลผลได้นั่นเอง
+\begin{figure}[H] % 'H' forces placement exactly here
+  % \begin{figure}[ht] % 'ht' means place it approximately here
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio]{pictures/rabbitmq.png}
+    \caption[Poem]{รูปจาก https://www.borntodev.com/2024/06/09/rabbitmq-nodejs/}
+    % \label{fig:monolithic-vs-microservices}
+  \end{figure}
+  \subsubsection{คำศัพท์ต่างๆที่เกี่ยวข้อง}
+  \begin{itemize}
+    \item  \textbf{Overview} คือ ส่วนที่แสดงสถานะและสถิติของ RabbitMQ เช่น จำนวนการเชื่อมต่อ, จำนวนคิว, จำนวน channel, และ message rate รวมไปถึงแสดงข้อมูลเกี่ยวกับการตั้งค่า cluster ของ RabbitMQ และ รายละเอียดของ node ต่างๆ
+    \item \textbf{Producer} คือ ผู้ส่งข้อความ
+    \item \textbf{Consumer} คือ ผู้รับข้อความ
+    \item \textbf{Queue} คือ คิวข้อความ
+    \item \textbf{Exchange} คือ ตัวกลางในการส่งข้อความ
+    \item \textbf{Binding} คือ การเชื่อมต่อระหว่าง Exchange กับ Queue
+    \item \textbf{Channel} คือ ช่องสื่อสารระหว่าง Producer และ Consumer
+    \item \textbf{Connection} คือ การเชื่อมต่อระหว่าง RabbitMQ กับ Producer และ Consumer
+  \end{itemize}
+% Section 3 text. The dielectric constant\index{dielectric constant}
+% at the air-metal interface determines
+% the resonance shift\index{resonance shift} as absorption or capture occurs
+% is shown in Equation~\eqref{eq:dielectric}:
+
+% \begin{equation}\label{eq:dielectric}
+% k_1=\frac{\omega}{c({1/\varepsilon_m + 1/\varepsilon_i})^{1/2}}=k_2=\frac{\omega
+% \sin(\theta)\varepsilon_\mathit{air}^{1/2}}{c}
+% \end{equation}
+
+% \noindent
+% where $\omega$ is the frequency of the plasmon, $c$ is the speed of
+% light, $\varepsilon_m$ is the dielectric constant of the metal,
+% $\varepsilon_i$ is the dielectric constant of neighboring insulator,
+% and $\varepsilon_\mathit{air}$ is the dielectric constant of air.
 
 \section{About using figures in your report}
 
 % define a command that produces some filler text, the lorem ipsum.
-\newcommand{\loremipsum}{
-  \textit{Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-  minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-  aliquip ex ea commodo consequat. Duis aute irure dolor in
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-  culpa qui officia deserunt mollit anim id est laborum.}\par}
+% \newcommand{\loremipsum}{
+%   \textit{Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+%   eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+%   minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+%   aliquip ex ea commodo consequat. Duis aute irure dolor in
+%   reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+%   pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+%   culpa qui officia deserunt mollit anim id est laborum.}\par}
 
-\begin{figure}
-  \centering
+% \begin{figure}
+%   \centering
 
-  \fbox{
-     \parbox{.6\textwidth}{\loremipsum}
-  }
+%   \fbox{
+%      \parbox{.6\textwidth}{\loremipsum}
+%   }
 
-  % To include an image in the figure, say myimage.pdf, you could use
-  % the following code. Look up the documentation for the package
-  % graphicx for more information.
-  % \includegraphics[width=\textwidth]{myimage}
+%   % To include an image in the figure, say myimage.pdf, you could use
+%   % the following code. Look up the documentation for the package
+%   % graphicx for more information.
+%   % \includegraphics[width=\textwidth]{myimage}
 
-  \caption[Sample figure]{This figure is a sample containing \gls{lorem ipsum},
-  showing you how you can include figures and glossary in your report.
-  You can specify a shorter caption that will appear in the List of Figures.}
-  \label{fig:sample-figure}
-\end{figure}
+%   \caption[Sample figure]{This figure is a sample containing \gls{lorem ipsum},
+%   showing you how you can include figures and glossary in your report.
+%   You can specify a shorter caption that will appear in the List of Figures.}
+%   \label{fig:sample-figure}
+% \end{figure}
 
-Using \verb.\label. and \verb.\ref. commands allows us to refer to
-figures easily. If we can refer to Figures
-\ref{fig:walrus} and \ref{fig:sample-figure} by name in the {\LaTeX}
-source code, then we will not need to update the code that refers to it
-even if the placement or ordering of the figures changes.
+% Using \verb.\label. and \verb.\ref. commands allows us to refer to
+% figures easily. If we can refer to Figures
+% \ref{fig:walrus} and \ref{fig:sample-figure} by name in the {\LaTeX}
+% source code, then we will not need to update the code that refers to it
+% even if the placement or ordering of the figures changes.
 
-\loremipsum\loremipsum
+% \loremipsum\loremipsum
 
 % This code demonstrates how to get a landscape table or figure. It
 % uses the package lscape to turn everything but the page number into
@@ -110,7 +155,7 @@ even if the placement or ordering of the figures changes.
   \end{landscape}
 }
 
-\loremipsum\loremipsum\loremipsum
+% \loremipsum\loremipsum\loremipsum
 
 \section{Overfull hbox}
 
@@ -118,7 +163,7 @@ When the \verb.semifinal. option is passed to the \verb.cpecmu. document class,
 any line that is longer than the line width, i.e., an overfull hbox, will be
 highlighted with a black solid rule:
 \begin{center}
-\begin{minipage}{2em}
+\begin{minipage}{10em}
 juxtaposition
 \end{minipage}
 \end{center}
