@@ -100,6 +100,19 @@
 \section{Json Web Token (JWT)}
 \hspace{1.27cm}JWT\cite{jwt}เป็นมาตรฐานแบบเปิด (RFC 7519) ที่กำหนดรูปแบบข้อมูลที่มีขนาดเล็กและสามารถตรวจสอบได้ในตัวเอง เพื่อใช้ในการส่งข้อมูลระหว่างฝ่ายต่างๆ อย่างปลอดภัยในรูปแบบของ JSON ข้อมูลนี้สามารถตรวจสอบและเชื่อถือได้ เนื่องจากมีการลงนามดิจิทัล (digitally signed)
 
+\section{Message Queue}
+
+\hspace{1.27cm}Message Queue\cite{messageQueue} (เรียกย่อๆว่า MQ) เป็นส่วนประกอบหนึ่งที่สำคัญในการออกแบบระบบขนาดใหญ่ โดย MQ ทำหน้าที่ในการรับ Message จากต้นทาง เก็บรักษาไว้ตามลำดับที่รับ Message เข้ามา และเปิดให้ปลายทาง มาหยิบ Message ออกไปทีละ 1 Message (หรือมากกว่า) ตามลำดับที่กำหนดไว้ตามประเภทของ Queue นั้นๆโดยที่ MQ นั้นเอง ก็มีหลากหลายประเภท หลายยี่ห้อผู้ผลิต และหลากหลายลักษณะการใช้งาน แต่ในพื้นฐานแล้ว ก็จะมีลักษณะเหมือนกัน ลองมาดูภาพการทำงานแบบคร่าวๆกันครับ
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth, keepaspectratio]{pictures/message_queue.png}
+  \caption[Poem]\raggedright{รูปจาก https://panitw.medium.com/การใช้งาน-message-queue-pattern-65b90a6c4364}
+  \label{fig:message-queue}
+\end{figure}
+
+\hspace{1.27cm}จากภาพ เราเรียก Service A ว่า Producer (ผู้ผลิต) และ Service B ว่า Consumer (ผู้บริโภค) โดย Producer จะสร้าง Message และส่งเข้าไปรอไว้ในคิว เพื่อให้ Consumer มาหยิบข้อความไปใช้ ข้อความที่ส่งเข้าไปใน MQ ก็จะถูกเก็บรักษาเอาไว้รอให้ Consumer มาหยิบโดยความเร็วข้อความที่ส่งเข้ามา อาจจะไม่เท่ากับความเร็วของข้อความที่ถูกดึงออกไป เช่นถ้า Producer ส่งข้อความทีละ 10 ข้อความต่อนาที แต่ Consumer อ่านไปทำได้ทีละ 1 ข้อความต่อนาที ก็จะทำให้มีข้อความค้างใน MQ เพิ่มขึ้นเรื่อยๆ 9 ข้อความต่อนาที
 % Section 3 text. The dielectric constant\index{dielectric constant}
 % at the air-metal interface determines
 % the resonance shift\index{resonance shift} as absorption or capture occurs
