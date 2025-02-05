@@ -30,7 +30,7 @@
 % \begin{figure}[ht] % 'ht' means place it approximately here
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{pictures/monolithic-vs-microservices.png}
-  \caption[Poem]{รูปจาก nsights.daffodilsw.com}
+  \caption[Monolithic Vs Microservice]{รูปจาก nsights.daffodilsw.com}
   % \label{fig:monolithic-vs-microservices}
 \end{figure}
 
@@ -63,7 +63,7 @@
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{pictures/reverse_proxy.png}
-  \caption[Poem]{รูปจาก https://www.vmware.com/topics/reverse-proxy-server}
+  \caption[Reverse Proxy]{รูปจาก https://www.vmware.com/topics/reverse-proxy-server}
   \label{fig:reverse-proxy}
 \end{figure}
 
@@ -108,7 +108,7 @@
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{pictures/message_queue.png}
-  \caption[Poem]\raggedright{รูปจาก https://panitw.medium.com/การใช้งาน-message-queue-pattern-65b90a6c4364}
+  \caption[Message Queue]\raggedright{รูปจาก https://panitw.medium.com/การใช้งาน-message-queue-pattern-65b90a6c4364}
   \label{fig:message-queue}
 \end{figure}
 
@@ -167,56 +167,55 @@
 
 % % \loremipsum\loremipsum
 
-% % This code demonstrates how to get a landscape table or figure. It
-% % uses the package lscape to turn everything but the page number into
-% % landscape orientation. Everything should be included within an
-% % \afterpage{ .... } to avoid causing a page break too early.
-% % \afterpage{
-% %   \begin{landscape}
-% %   \begin{table}
-% %     \caption{Sample landscape table}
-% %     \label{tab:sample-table}
+\section{Model-View-Controller (MVC)}
+\hspace{1.27cm}MVC หรือ Model-View-Controller\cite{mvc} เป็นรูปแบบการออกแบบโปรแกรมที่มีการแบ่งส่วนการทำงานออกเป็น 3 ส่วน ได้แก่ Model, View และ Controller เป็น Software Design Pattern หรือแนวทางการออกแบบซอฟต์แวร์รูปแบบหนึ่งของการเขียนซอฟต์แวร์
 
-% %     \centering
-
-% %     \begin{tabular}{c||c|c}
-% %         Year & A & B \\
-% %         \hline\hline
-% %         1989 & 12 & 23 \\
-% %         1990 & 4 & 9 \\
-% %         1991 & 3 & 6 \\
-% %     \end{tabular}
-% %   \end{table}
-% %   \end{landscape}
-% % }
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth, keepaspectratio]{pictures/mvc.png}
+  \caption[Model View Controller]{รูปจาก https://commons.wikimedia.org/wiki/File:MVC-basic.svg}
+  \label{fig:mvc}
+  
+\end{figure}
+\begin{itemize}
+  \item \textbf{Model} คือส่วนที่เก็บข้อมูล และจัดการกับข้อมูล โดย Model จะไม่รู้จัก View จะส่งข้อมูลกลับไปยัง Controller เท่านั้น
+  \item \textbf{View} คือส่วนที่แสดงผลข้อมูล และรับข้อมูลจากผู้ใช้ โดย View จะไม่รู้จัก Model แต่จะส่งข้อมูลกลับไปยัง Controller เท่านั้น
+  \item \textbf{Controller} คือส่วนที่ควบคุมการทำงานของระบบ โดย Controller จะรับข้อมูลจาก View และส่งข้อมูลไปยัง Model และจาก Model ก็จะส่งข้อมูลกลับไปยัง View
+\end{itemize}
+\textbf{จุดประสงค์ของ MVC}
+\begin{itemize}
+  \item เพื่อแยกโค้ดออกเป็นส่วน ทำให้เราเปลี่ยนแปลงบางส่วนของโค้ดได้ โดยไม่กระทบกับส่วนอื่น ทำให้ Maintenance โค้ดทีหลังได้ง่าย
+  \item ทำให้โค้ดสามารถถูกเขียนพร้อมกันโดยโปรแกรมเมอร์หลายคนได้
+  \item สามารถนำโค้ดมาใช้ซ้ำได้
+\end{itemize}
 
 % % \loremipsum\loremipsum\loremipsum
 
-\section{Overfull hbox}
+% \section{Overfull hbox}
 
-When the \verb.semifinal. option is passed to the \verb.cpecmu. document class,
-any line that is longer than the line width, i.e., an overfull hbox, will be
-highlighted with a black solid rule:
-\begin{center}
-\begin{minipage}{10em}
-juxtaposition
-\end{minipage}
-\end{center}
+% When the \verb.semifinal. option is passed to the \verb.cpecmu. document class,
+% any line that is longer than the line width, i.e., an overfull hbox, will be
+% highlighted with a black solid rule:
+% \begin{center}
+% \begin{minipage}{10em}
+% juxtaposition
+% \end{minipage}
+% \end{center}
 
-\section{\ifenglish%
-\ifcpe CPE \else ISNE \fi knowledge used, applied, or integrated in this project
-\else%
-ความรู้ตามหลักสูตรซึ่งถูกนำมาใช้หรือบูรณาการในโครงงาน
-\fi
-}
+% \section{\ifenglish%
+% \ifcpe CPE \else ISNE \fi knowledge used, applied, or integrated in this project
+% \else%
+% ความรู้ตามหลักสูตรซึ่งถูกนำมาใช้หรือบูรณาการในโครงงาน
+% \fi
+% }
 
-อธิบายถึงความรู้ และแนวทางการนำความรู้ต่างๆ ที่ได้เรียนตามหลักสูตร ซึ่งถูกนำมาใช้ในโครงงาน
+% อธิบายถึงความรู้ และแนวทางการนำความรู้ต่างๆ ที่ได้เรียนตามหลักสูตร ซึ่งถูกนำมาใช้ในโครงงาน
 
-\section{\ifenglish%
-Extracurricular knowledge used, applied, or integrated in this project
-\else%
-ความรู้นอกหลักสูตรซึ่งถูกนำมาใช้หรือบูรณาการในโครงงาน
-\fi
-}
+% \section{\ifenglish%
+% Extracurricular knowledge used, applied, or integrated in this project
+% \else%
+% ความรู้นอกหลักสูตรซึ่งถูกนำมาใช้หรือบูรณาการในโครงงาน
+% \fi
+% }
 
-อธิบายถึงความรู้ต่างๆ ที่เรียนรู้ด้วยตนเอง และแนวทางการนำความรู้เหล่านั้นมาใช้ในโครงงาน
+% อธิบายถึงความรู้ต่างๆ ที่เรียนรู้ด้วยตนเอง และแนวทางการนำความรู้เหล่านั้นมาใช้ในโครงงาน

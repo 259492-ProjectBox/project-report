@@ -5,7 +5,9 @@
 \fi
 }
 
-ในบทนี้จะกล่าวถึงหลักการ และการออกแบบระบบ
+% ในบทนี้จะกล่าวถึงหลักการ และการออกแบบระบบ
+
+\newcommand{\iptoDomain}[2]{\texttt{#1} $\rightarrow$ \texttt{#2}}
 
 \makeatletter
 
@@ -19,79 +21,74 @@
 % \titleformat{\section}{\normalfont\bfseries}{\thesection}{1em}{}
 % \titlespacing*{\section}{0pt}{10ex}{0pt}
 
-\section{Alice in Wonderland}
+\section{\ifenglish System Architecture\else สถาปัตยกรรมระบบ\fi}
 
-\begin{figure}
-\begin{center}
-\includegraphics{800px-Briny_Beach.jpg}
-\end{center}
-\caption[Poem]{The Walrus and the Carpenter}
-\label{fig:walrus}
+\hspace{1.27cm} \raggedright โครงงานนี้ได้ออกแบบสถาปัตยกรรมของระบบเป็นแบบ Microservices โดยบทนี้จะกล่าวถึงโครงสร้างของระบบทั้งหมด และอธิบายถึงแต่ละส่วนของระบบ โดยระบบจะถูกแบ่งออกเป็นส่วนย่อยๆแต่ละส่วนจะมีหน้าที่และความรับผิดชอบในการทำงานที่แตกต่างกัน 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pictures/architecture.png}
+    \caption{รูปภาพแสดงสถาปัตยกรรมของระบบ}
+    \label{fig:system_architecture}
+  
 \end{figure}
 
-\subsection{The Black Kitten}
-  One thing was certain, that the WHITE kitten had had nothing to
-do with it:---it was the black kitten's fault entirely~\cite{aiw}.  For the
-white kitten had been having its face washed by the old cat for
-the last quarter of an hour (and bearing it pretty well,
-considering); so you see that it COULDN'T have had any hand in
-the mischief.
+จากรูปที่ \ref{fig:system_architecture} แสดงถึงสถาปัตยกรรมของระบบที่ถูกแบ่งออกเป็นส่วนย่อยๆ ดังนี้
+\begin{enumerate}
+  \item  \textbf{Frontend} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลของระบบ โดยส่วนนี้จะถูกพัฒนาด้วย Next.js
+  \item \textbf{Reverse Proxy} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการการเชื่อมต่อระหว่าง Frontend และ Backend โดยส่วนนี้จะถูกพัฒนาด้วย Nginx Proxy Manager(NPM)
+  \item \textbf{Backend} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการข้อมูลและการทำงานของระบบ โดยส่วนนี้จะถูกแบ่งออกเป็นส่วนย่อยๆ ดังนี้
+  \begin{itemize}
+    \item \textbf{Auth Service} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการข้อมูลของผู้ใช้งาน โดยส่วนนี้จะถูกพัฒนาด้วย Typescript Elysia.js 
+    \item \textbf{Project Service} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการข้อมูลของโครงงาน โดยส่วนนี้จะถูกพัฒนาด้วย Go Gin 
+    \item \textbf{Search Service} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการค้นหาข้อมูลของโครงงาน โดยส่วนนี้จะถูกพัฒนาด้วย Java Sprint Boot \& Elasticsearch
+  \end{itemize}
+\end{enumerate}
 
-  The way Dinah washed her children's faces was this:  first she
-held the poor thing down by its ear with one paw, and then with
-the other paw she rubbed its face all over, the wrong way,
-beginning at the nose:  and just now, as I said, she was hard at
-work on the white kitten, which was lying quite still and trying
-to purr---no doubt feeling that it was all meant for its good.
-
-  But the black kitten had been finished with earlier in the
-afternoon, and so, while Alice was sitting curled up in a corner
-of the great arm-chair, half talking to herself and half asleep,
-the kitten had been having a grand game of romps with the ball of
-worsted Alice had been trying to wind up, and had been rolling it
-up and down till it had all come undone again; and there it was,
-spread over the hearth-rug, all knots and tangles, with the
-kitten running after its own tail in the middle.
-
-\subsection{The Reproach}
-
-  `Oh, you wicked little thing!' cried Alice, catching up the
-kitten, and giving it a little kiss to make it understand that it
-was in disgrace.  `Really, Dinah ought to have taught you better
-manners!  You OUGHT, Dinah, you know you ought!' she added,
-looking reproachfully at the old cat, and speaking in as cross a
-voice as she could manage---and then she scrambled back into the
-arm-chair, taking the kitten and the worsted with her, and began
-winding up the ball again.  But she didn't get on very fast, as
-she was talking all the time, sometimes to the kitten, and
-sometimes to herself.  Kitty sat very demurely on her knee,
-pretending to watch the progress of the winding, and now and then
-putting out one paw and gently touching the ball, as if it would
-be glad to help, if it might.
-
-  `Do you know what to-morrow is, Kitty?' Alice began.  `You'd
-have guessed if you'd been up in the window with me---only Dinah
-was making you tidy, so you couldn't.  I was watching the boys
-getting in stick for the bonfire---and it wants plenty of
-sticks, Kitty!  Only it got so cold, and it snowed so, they had
-to leave off.  Never mind, Kitty, we'll go and see the bonfire
-to-morrow.'  Here Alice wound two or three turns of the worsted
-round the kitten's neck, just to see how it would look:  this led
-to a scramble, in which the ball rolled down upon the floor, and
-yards and yards of it got unwound again.
-
-  `Do you know, I was so angry, Kitty,' Alice went on as soon as
-they were comfortably settled again, `when I saw all the mischief
-you had been doing, I was very nearly opening the window, and
-putting you out into the snow!  And you'd have deserved it, you
-little mischievous darling!  What have you got to say for
-yourself?  Now don't interrupt me!' she went on, holding up one
-finger.  `I'm going to tell you all your faults.  Number one:
-you squeaked twice while Dinah was washing your face this
-morning.  Now you can't deny it, Kitty:  I heard you!  What that
-you say?' (pretending that the kitten was speaking.)  `Her paw
-went into your eye?  Well, that's YOUR fault, for keeping your
-eyes open---if you'd shut them tight up, it wouldn't have
-happened.  Now don't make any more excuses, but listen!  Number
-two:  you pulled Snowdrop away by the tail just as I had put down
-the saucer of milk before her!  What, you were thirsty, were you?
+\section{Frontend (Waiting for edit)}
+\hspace{1.27cm} \raggedright ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลของระบบ โดยส่วนนี้จะถูกพัฒนาด้วย Next.js โดยส่วนนี้จะถูกแบ่งออกเป็นส่วนย่อยๆ ดังนี้
+\begin{itemize}
+  \item \textbf{Home Page} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าแรกของเว็บไซต์
+  \item \textbf{Project Page} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าโครงงาน
+  \item \textbf{Search Page} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าค้นหา
+  \item \textbf{Profile Page} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าโปรไฟล์
+  \end{itemize}
+\section{Reverse Proxy}
+\hspace{1.27cm} \raggedright ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการการเชื่อมต่อระหว่าง Frontend และ Backend โดยส่วนนี้จะถูกพัฒนาด้วย Nginx Proxy Manager(NPM)\cite{npm} มีหน้าที่คือ
+การแปลง ip addres ของ server ให้เป็น domain name ยกตัวอย่างเช่น แปลง IP Addres
+\iptoDomain{139.59.117.147:8080}{domainname.com}
+\enskip โดยส่วนนี้จะทำให้เราสามารถเข้าถึงเว็บไซต์ผ่าน domainname.com ได้ และยังสามารถจัดการการเชื่อมต่อระหว่าง Frontend และ Backend ได้อีกด้วย
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pictures/npm1.png}
+  \caption{รูปภาพแสดงการทแปลง IP ของ Nginx Reverse Proxy}
+  \label{fig:reverse_proxy}
+\end{figure}
+\hspace{ 1.27cm}อีก feature นึงที่สำคัญของ Nginx Reverse Proxy คือการจัดการ SSL Certificate โดย Reverse Proxy จะทำหน้าที่ในการจัดการ SSL Certificate ให้กับเว็บไซต์ ซึ่งจะทำให้เว็บไซต์มีความปลอดภัยมากขึ้น และยังสามารถใช้งานได้ทั้งบน http และ https อีกด้วย
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{pictures/encrpt.png}
+  \caption{รูปภาพแสดงการจัดการ SSL Certificate ของ Nginx Reverse Proxy}
+  \label{fig:reverse_proxy_ssl}
+\end{figure}
+\section{Backend}
+\hspace{1.27cm} \raggedright ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการข้อมูลและการทำงานของระบบ โดยส่วนนี้จะถูกแบ่งออกเป็นส่วนย่อยๆ ดังนี้
+\subsection{Auth Service} 
+\hspace{1.27cm} \raggedright ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการข้อมูลของผู้ใช้งาน โดยส่วนนี้จะถูกพัฒนาด้วย Typescript Elysia.js โดยส่วนนี้จะมีหน้าที่คือ
+จัดการข้อมูลของผู้ใช้งานทำหน้าที่ในการเข้าสู่ระบบ และจัดการสิทธิ์ของผู้ใช้งาน(Role) โดยมีการใช้งาน Oauth2 ในการจัดการการเข้าสู่ระบบ และมีการใช้งาน JWT เพื่อสร้าง Token ส่งกลับไปยัง Frontend
+\subsubsection{Database Schema}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pictures/auth_db.png}
+  \caption{รูปภาพแสดง Database Schema ของ Auth Service}
+  \label{fig:auth_service}
+\end{figure}
+\textbf{\ifenglish Database Schema\else โครงสร้างของฐานข้อมูล\fi}
+\begin{itemize}
+  \item \textbf{users} ตารางนี้จะเป็นตารางที่เก็บข้อมูลของผู้ใช้งาน 
+  \item \textbf{roles} ตารางนี้จะเป็นตารางที่เก็บข้อมูลของตำแหน่งของผู้ใช้งาน
+  \item \textbf{programs} ตารางนี้จะเป็นตารางที่เก็บข้อมูลของโปรแกรมหรือหลักศสูตรที่มีอยู่ในระบบ
+  \item \textbf{user\_roles} ตารางนี้จะแสดงถึงความสัมพันธ์ของผู้ใช้งานกับตำแหน่งของผู้ใช้งานในโปรแกรมหรือหลักสูตรนั้นๆ
+\end{itemize}
+\subsection{Project Service}
+\subsection{Search Service}
