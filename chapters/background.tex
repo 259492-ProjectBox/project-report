@@ -189,6 +189,63 @@
   \item สามารถนำโค้ดมาใช้ซ้ำได้
 \end{itemize}
 
+
+\section{Elasticsearch}
+\hspace{1.27cm}เนื่องด้วยการ Search project ด้วย full text search บน SQL Database ไม่ตอบโจทย์หากข้อมูลมีจำนวนมากและต้องการค้นหาจาก Text ที่มีความยาวมาก
+Elasticsearch จึงเข้ามาช่วยแก้ปัญหาในส่วนนี้ โดย Elastic Search คือ Search Engine ที่ได้รับความนิยมอย่างแพร่หลาย ถูกออกแบบมาให้สามารถจัดเก็บ ค้นหา และวิเคราะห์ข้อมูลขนาดใหญ่ได้อย่างรวดเร็วและมีประสิทธิภาพ 
+โดยใช้โครงสร้างแบบ Distributed (กระจายศูนย์) และ RESTful API เพื่อให้สามารถเข้าถึงและจัดการข้อมูลได้ง่ายคุณสมบัติของ Elastic search มีดังนี้ Full text search  รองรับการค้นหาข้อมูลแบบเต็มรูปแบบและแม่นยำ, Distributed Architecture  ทำงานแบบกระจายข้อมูลที่เรียกว่า sharding เพื่อรองรับโหลดขนาดใหญ่และเพิ่มประสิทธิภาพ, Scalability สามารถขยายขนาดได้ง่ายทั้งในรูปแบบ vertical scaling และ horizontal scaling , Near Real-Time Search  สามารถค้นหาและดึงข้อมูลที่เพิ่งถูกเพิ่มเข้ามาได้อย่างรวดเร็ว, Integration รองรับการเชื่อมต่อกับ Logstash, Kibana และ Beats เพื่อสร้าง solution สำหรับการวิเคราะห์ข้อมูลและการ Monitor
+
+\section{Inverted Index}
+\hspace{1.27cm}Inverted Index เป็นโครงสร้างข้อมูลที่ถูกใช้ใน Elasticsearch เพื่อเพิ่มประสิทธิภาพในการค้นหาข้อมูลแบบ Full-Text Search โดยหลักการของ Inverted Index คือการสร้างดัชนีที่ทำให้สามารถค้นหาคำในเอกสารขนาดใหญ่ได้อย่างรวดเร็ว โครงสร้างของ Inverted Index มีดังนี้:
+
+\begin{itemize}
+\item 	extbf{Tokenization} ข้อความจะถูกแยกออกเป็นคำย่อยๆ (Token) เช่น "Elasticsearch is fast" จะแยกออกเป็น ["elasticsearch", "is", "fast"].
+\item 	extbf{Normalization} คำจะถูกปรับรูปแบบ เช่น เปลี่ยนเป็นตัวพิมพ์เล็กทั้งหมด หรือกำจัดเครื่องหมายพิเศษ.
+\item 	extbf{Posting List} สร้างดัชนีโดยเก็บตำแหน่งของคำที่ปรากฏในเอกสาร เช่น "fast" อาจอยู่ในเอกสารที่ 1, 2 และ 5.
+\end{itemize}
+
+การใช้ Inverted Index ทำให้ Elasticsearch สามารถค้นหาข้อมูลได้เร็วขึ้นมากเมื่อเทียบกับการสแกนข้อมูลทั้งหมดแบบดั้งเดิมใน SQL Database.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth, keepaspectratio]{pictures/inverted_index.jpg}
+\caption[Inverted Index]{ตัวอย่างโครงสร้างของ Inverted Index}
+\label{fig:inverted_index}
+\end{figure}
+
+
+\section{Kibana}
+\hspace{1.27cm}Kibana เป็นเครื่องมือสำหรับแสดงผลและวิเคราะห์ข้อมูลที่ถูกจัดเก็บใน Elasticsearch โดยมีอินเทอร์เฟซแบบกราฟิกที่ช่วยให้ผู้ใช้สามารถสร้างแดชบอร์ด (Dashboard), ค้นหา, วิเคราะห์ และแสดงข้อมูลในรูปแบบต่างๆ ได้อย่างง่ายดาย
+Kibana มักถูกใช้ร่วมกับ Elasticsearch ในงานที่ต้องจัดเก็บ ค้นหา วิเคราะห์ และแสดงผลข้อมูล เช่น:
+\begin{itemize}
+\item การตรวจสอบเซิร์ฟเวอร์หรือแอปพลิเคชัน (Application Monitoring)
+\item ระบบค้นหาในเว็บไซต์หรือเอกสาร (Search Systems)
+\item การสร้างแดชบอร์ดสรุปข้อมูลธุรกิจ (Business Analytics)
+\item การตรวจจับภัยคุกคาม (Security Monitoring)
+\end{itemize}
+
+\section{Spring Boot}
+\hspace{1.27cm}Spring Boot เป็นเฟรมเวิร์กที่พัฒนาต่อยอดจาก Spring Framework โดยมีจุดเด่นคือทำให้การตั้งค่าซับซ้อนของ Spring ง่ายขึ้น และช่วยให้พัฒนาเว็บแอปพลิเคชัน หรือ REST API ได้เร็วขึ้น คุณสมบัติของ Spring Boot มีดังนี้:
+
+\begin{itemize}
+\item \textbf{Auto Configuration} – ตั้งค่าเริ่มต้นอัตโนมัติ เช่น Database, Security, Logging
+\item \textbf{Embedded Server} – มี Web Server ในตัว (Tomcat, Jetty, Undertow)
+\item \textbf{Spring Boot Starter} – ใช้ dependency สำเร็จรูป ทำให้ง่ายต่อการใช้งานเครื่องมือต่างๆ เช่น พัฒนาเว็บแอปและ REST API
+\item \textbf{Spring Boot Actuator} – ใช้ตรวจสอบสถานะระบบ เช่น health check
+\item \textbf{Microservices Ready} – รองรับการพัฒนา Microservices ได้ง่าย
+\end{itemize}
+
+\section{Hibernate}
+\hspace{1.27cm}Hibernate เป็นเฟรมเวิร์กที่ใช้สำหรับ ORM (Object-Relational Mapping) ใน Java ซึ่งช่วยให้สามารถทำงานกับฐานข้อมูลได้สะดวกขึ้นโดยไม่ต้องเขียน SQL โดยตรง คุณสมบัติหลักของ Hibernate มีดังนี้:
+
+\begin{itemize}
+\item \textbf{Mapping Object กับ Database} – แปลง Java Object ให้สามารถบันทึกลงฐานข้อมูลได้อัตโนมัติ
+\item \textbf{HQL (Hibernate Query Language)} – ภาษา Query ที่สามารถใช้แทน SQL และเป็นอิสระจากฐานข้อมูล
+\item \textbf{Lazy Loading} – โหลดข้อมูลเฉพาะส่วนที่จำเป็นเพื่อลดการใช้ทรัพยากร
+\item \textbf{Transaction Management} – รองรับการทำงานกับ Transaction และ ACID properties
+\item \textbf{Database Independence} – ใช้งานได้กับหลายฐานข้อมูล เช่น MySQL, PostgreSQL, Oracle
+\end{itemize}
+
 % % \loremipsum\loremipsum\loremipsum
 
 % \section{Overfull hbox}
