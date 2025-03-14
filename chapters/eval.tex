@@ -2,6 +2,52 @@
 \ifenglish Experimentation and Results\else การทดลองและผลลัพธ์\fi
 \else%
 \ifenglish System Evaluation\else การประเมินระบบ\fi
-\fi}
+\fi
+}
 
-ในบทนี้จะทดสอบเกี่ยวกับการทำงานในฟังก์ชันหลักๆ
+ในบทนี้จะทำการทดสอบการทำงานของระบบในฟังก์ชันหลักต่างๆ
+
+\section{\ifenglish Functionality Testing\else การทดสอบฟังก์ชันการทำงาน\fi}
+
+\subsection{\ifenglish User Login\else การเข้าสู่ระบบของผู้ใช้\fi}
+\begin{itemize}
+  \item \textbf{วัตถุประสงค์:} เพื่อตรวจสอบว่าผู้ใช้งานสามารถเข้าสู่ระบบได้โดยใช้บัญชี CMU Account
+  \item \textbf{ขั้นตอนการทดสอบ:}
+  \begin{enumerate}
+    \item ไปยังหน้าเข้าสู่ระบบ
+    \item ป้อนข้อมูลบัญชี CMU Account ที่ถูกต้อง
+    \item คลิกปุ่ม "เข้าสู่ระบบ"
+  \end{enumerate}
+  \item \textbf{ผลลัพธ์ที่คาดหวัง:} ผู้ใช้งานสามารถเข้าสู่ระบบได้สำเร็จ และถูกเปลี่ยนเส้นทางไปยังหน้าแดชบอร์ด
+  \item \textbf{ผลลัพธ์ที่ได้:} ผู้ใช้งานสามารถเข้าสู่ระบบได้สำเร็จ และถูกเปลี่ยนเส้นทางไปยังหน้าแดชบอร์ด
+  \item \textbf{สถานะ:} ผ่าน
+\end{itemize}
+
+\subsection{\ifenglish Project Search\else การค้นหาโครงงาน\fi}
+\begin{itemize}
+  \item \textbf{วัตถุประสงค์:} เพื่อตรวจสอบว่าผู้ใช้งานสามารถค้นหาโครงงานได้โดยใช้ฟังก์ชันการค้นหา
+  \item \textbf{ขั้นตอนการทดสอบ:}
+  \begin{enumerate}
+    \item ไปยังหน้าค้นหา
+    \item ป้อนคำค้นหาในช่องค้นหา
+    \item คลิกปุ่ม "ค้นหา"
+  \end{enumerate}
+  \item \textbf{ผลลัพธ์ที่คาดหวัง:} โครงงานที่เกี่ยวข้องกับคำค้นหาจะแสดงขึ้นมา
+  \item \textbf{ผลลัพธ์ที่ได้:} โครงงานที่เกี่ยวข้องแสดงผลได้อย่างถูกต้อง
+  \item \textbf{สถานะ:} ผ่าน
+\end{itemize}
+
+\subsection{\ifenglish Project Creation\else การสร้างโครงงาน\fi}
+\begin{itemize}
+  \item \textbf{วัตถุประสงค์:} เพื่อตรวจสอบว่าผู้ใช้งานสามารถสร้างโครงงานใหม่ได้
+  \item \textbf{ขั้นตอนการทดสอบ:}
+  \begin{enumerate}
+    \item ไปยังหน้าแดชบอร์ด
+    \item คลิกปุ่ม "สร้างโครงงาน"
+    \item กรอกรายละเอียดโครงงาน
+    \item คลิกปุ่ม "บันทึก"
+  \end{enumerate}
+  \item \textbf{ผลลัพธ์ที่คาดหวัง:} โครงงานถูกสร้างสำเร็จ และแสดงในหน้าแดชบอร์ด
+  \item \textbf{ผลลัพธ์ที่ได้:} โครงงานถูกสร้างสำเร็จและแสดงผล
+  \item \textbf{สถานะ:} ผ่าน
+\end{itemize}
