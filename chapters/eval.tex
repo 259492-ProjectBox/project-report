@@ -24,8 +24,52 @@
 \end{itemize}
 
 \subsection{\ifenglish Project Search\else การค้นหาโครงงาน\fi}
+
+\subsubsection{\ifenglish Quick Search\else การค้นหาแบบ Quick Search\fi}
 \begin{itemize}
-  \item \textbf{วัตถุประสงค์:} เพื่อตรวจสอบว่าผู้ใช้งานสามารถค้นหาโครงงานได้โดยใช้ฟังก์ชันการค้นหา
+  \item \textbf{วัตถุประสงค์:} เพื่อตรวจสอบว่าผู้ใช้งานสามารถค้นหาโครงงานได้โดยใช้ฟังก์ชันการค้นหาแบบ Quick Search
+  \item \textbf{ขั้นตอนการทดสอบ:}
+  \begin{enumerate}
+    \item ไปยังหน้าค้นหา
+    \item ป้อนคำค้นหาในช่องค้นหา (เช่น ชื่อโครงงาน, คำอธิบาย, รหัสนักศึกษา/ชื่อ, ชื่ออาจารย์ที่ปรึกษา ภาษาไทย/อังกฤษ)
+    \item คลิกปุ่ม "ค้นหา"
+  \end{enumerate}
+  \item \textbf{ผลลัพธ์ที่คาดหวัง:} โครงงานที่เกี่ยวข้องกับคำค้นหาจะแสดงขึ้นมา
+  \item \textbf{ผลลัพธ์ที่ได้:} โครงงานที่เกี่ยวข้องแสดงผลได้อย่างถูกต้อง แต่มีปัญหาคือไม่สามารถเว้นคำในการค้นหา เช่น ค้นหาคำว่า "Digital Platform" แต่ถ้าพิมพ์ "Digital" หรือ "Platform" จะหาเจอ
+  \item \textbf{สถานะ:} ผ่านบางส่วน
+\end{itemize}
+
+\subsubsection{\ifenglish Advanced Search\else การค้นหาแบบ Advanced Search\fi}
+\begin{itemize}
+  \item \textbf{วัตถุประสงค์:} เพื่อตรวจสอบว่าผู้ใช้งานสามารถค้นหาโครงงานได้โดยใช้ฟังก์ชันการค้นหาแบบ Advanced Search
+  \item \textbf{ขั้นตอนการทดสอบ:}
+  \begin{enumerate}
+    \item ไปยังหน้าค้นหา
+    \item เลือกหมวดหมู่ต่างๆ สำหรับการค้นหา (เช่น หมวดหมู่โครงงาน, ปีการศึกษา, ชื่ออาจารย์ที่ปรึกษา)
+    \item คลิกปุ่ม "ค้นหา"
+  \end{enumerate}
+  \item \textbf{ผลลัพธ์ที่คาดหวัง:} โครงงานที่เกี่ยวข้องกับหมวดหมู่ที่เลือกจะแสดงขึ้นมา
+  \item \textbf{ผลลัพธ์ที่ได้:} โครงงานที่เกี่ยวข้องแสดงผลได้อย่างถูกต้อง
+  \item \textbf{สถานะ:} ผ่าน
+\end{itemize}
+
+\subsubsection{\ifenglish PDF Search\else การค้นหาแบบ PDF Search\fi}
+\begin{itemize}
+  \item \textbf{วัตถุประสงค์:} เพื่อตรวจสอบว่าผู้ใช้งานสามารถค้นหาโครงงานได้โดยใช้ฟังก์ชันการค้นหาแบบ PDF Search
+  \item \textbf{ขั้นตอนการทดสอบ:}
+  \begin{enumerate}
+    \item ไปยังหน้าค้นหา
+    \item ป้อนคำค้นหาในช่องค้นหา
+    \item คลิกปุ่ม "ค้นหา"
+  \end{enumerate}
+  \item \textbf{ผลลัพธ์ที่คาดหวัง:} โครงงานที่มีคำค้นหาในรายงาน PDF จะแสดงขึ้นมาและมีการไฮไลต์คำค้นหา
+  \item \textbf{ผลลัพธ์ที่ได้:} โครงงานที่เกี่ยวข้องแสดงผลได้อย่างถูกต้อง แต่การค้นหาคำภาษาไทยยังมีผิดพลาดบ้าง เช่น ค้นหาคำว่า "บริหาร" อาจจะมีคำว่า "บริการ" มาด้วย ซึ่งคาดว่าปัญหาน่าจะมาจาก Elasticsearch
+  \item \textbf{สถานะ:} ผ่านบางส่วน
+\end{itemize}
+
+\subsubsection{\ifenglish Keyword Search\else การค้นหาแบบ Keyword Search\fi}
+\begin{itemize}
+  \item \textbf{วัตถุประสงค์:} เพื่อตรวจสอบว่าผู้ใช้งานสามารถค้นหาโครงงานได้โดยใช้ฟังก์ชันการค้นหาแบบ Keyword Search
   \item \textbf{ขั้นตอนการทดสอบ:}
   \begin{enumerate}
     \item ไปยังหน้าค้นหา
@@ -36,16 +80,15 @@
   \item \textbf{ผลลัพธ์ที่ได้:} โครงงานที่เกี่ยวข้องแสดงผลได้อย่างถูกต้อง
   \item \textbf{สถานะ:} ผ่าน
 \end{itemize}
-
 \subsection{\ifenglish Project Creation\else การสร้างโครงงาน\fi}
 \begin{itemize}
   \item \textbf{วัตถุประสงค์:} เพื่อตรวจสอบว่าผู้ใช้งานสามารถสร้างโครงงานใหม่ได้
   \item \textbf{ขั้นตอนการทดสอบ:}
   \begin{enumerate}
     \item ไปยังหน้าแดชบอร์ด
-    \item คลิกปุ่ม "สร้างโครงงาน"
+    \item คลิกปุ่ม "Create Project"
     \item กรอกรายละเอียดโครงงาน
-    \item คลิกปุ่ม "บันทึก"
+    \item คลิกปุ่ม "Save"
   \end{enumerate}
   \item \textbf{ผลลัพธ์ที่คาดหวัง:} โครงงานถูกสร้างสำเร็จ และแสดงในหน้าแดชบอร์ด
   \item \textbf{ผลลัพธ์ที่ได้:} โครงงานถูกสร้างสำเร็จและแสดงผล

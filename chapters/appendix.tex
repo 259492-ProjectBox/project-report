@@ -4,28 +4,118 @@
 
 % \section{Appendix section}
 
-% Text for a section in the first appendix goes here.
+\chapter{\ifenglish Manual For Installation\else คู่มือการติดตั้ง\fi}
 
-% test ทดสอบฟอนต์ serif ภาษาไทย
+\section{Next.js 14 (Frontend)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=100mm, keepaspectratio ]{pictures/nextjs.png}
+\end{figure}
+โครงสร้างของโปรเจกต์นี้ประกอบด้วยหลายไฟล์และโฟลเดอร์ที่สำคัญสำหรับการพัฒนาและการตั้งค่าโปรเจกต์ โดยมีรายละเอียดดังนี้:
 
-% \textsf{test ทดสอบฟอนต์ sans serif ภาษาไทย}
+\subsection{Main Files and Folders}
+\begin{itemize}
+    \item \textbf{.dockerignore}: ไฟล์ที่ระบุไฟล์หรือโฟลเดอร์ที่ไม่ต้องการให้ Docker คัดลอกไปยัง image
+    \item \textbf{.env, .env.local, .env.prod}: ไฟล์ที่ใช้เก็บค่าตัวแปรสภาพแวดล้อม (environment variables) สำหรับการตั้งค่าโปรเจกต์ในสภาพแวดล้อมต่างๆ
+    \item \textbf{.eslintrc.json}: ไฟล์การตั้งค่า ESLint สำหรับการตรวจสอบและจัดรูปแบบโค้ด
+    \item \textbf{.gitignore}: ไฟล์ที่ระบุไฟล์หรือโฟลเดอร์ที่ไม่ต้องการให้ Git ติดตาม
+    \item \textbf{docker-compose.yml}: ไฟล์การตั้งค่า Docker Compose สำหรับการจัดการ container หลายๆ ตัว
+    \item \textbf{Dockerfile}: ไฟล์การตั้งค่า Docker สำหรับการสร้าง Docker image
+    \item \textbf{next-env.d.ts}: ไฟล์การตั้งค่า TypeScript สำหรับโปรเจกต์ Next.js
+    \item \textbf{next.config.mjs}: ไฟล์การตั้งค่า Next.js
+    \item \textbf{package.json}: ไฟล์ที่เก็บข้อมูลเกี่ยวกับโปรเจกต์ Node.js รวมถึง dependencies และสคริปต์ต่างๆ
+    \item \textbf{postcss.config.mjs}: ไฟล์การตั้งค่า PostCSS
+    \item \textbf{README.md}: ไฟล์เอกสารสำหรับโปรเจกต์
+    \item \textbf{tailwind.config.ts}: ไฟล์การตั้งค่า Tailwind CSS
+    \item \textbf{tsconfig.json}: ไฟล์การตั้งค่า TypeScript
+\end{itemize}
 
-% \verb+test ทดสอบฟอนต์ teletype ภาษาไทย+
+\subsection{Subfolders}
+\begin{itemize}
+    \item \textbf{workflows}: โฟลเดอร์ที่เก็บไฟล์การตั้งค่า GitHub Actions สำหรับการทำงานอัตโนมัติ
+    \item \textbf{.next}: โฟลเดอร์ที่เก็บไฟล์ที่ถูกสร้างขึ้นโดย Next.js หลังจากการ build
+    \item \textbf{.vs}: โฟลเดอร์ที่เก็บการตั้งค่าของ Visual Studio Code
+    \item \textbf{app}: โฟลเดอร์ที่เก็บไฟล์และโฟลเดอร์ที่เกี่ยวข้องกับการทำงานของแอปพลิเคชัน
+    \item \textbf{components}: โฟลเดอร์ที่เก็บคอมโพเนนต์ React ที่ใช้ในโปรเจกต์
+    \item \textbf{config}: โฟลเดอร์ที่เก็บไฟล์การตั้งค่าต่างๆ
+    \item \textbf{context}: โฟลเดอร์ที่เก็บไฟล์ context ของ React
+    \item \textbf{dtos}: โฟลเดอร์ที่เก็บไฟล์ Data Transfer Objects (DTOs)
+    \item \textbf{hooks}: โฟลเดอร์ที่เก็บ custom hooks ของ React
+    \item \textbf{models}: โฟลเดอร์ที่เก็บไฟล์โมเดลต่างๆ
+    \item \textbf{pages}: โฟลเดอร์ที่เก็บไฟล์เพจของ Next.js
+    \item \textbf{public}: โฟลเดอร์ที่เก็บไฟล์สาธารณะ เช่น รูปภาพ
+    \item \textbf{types}: โฟลเดอร์ที่เก็บไฟล์ประเภท (types) ของ TypeScript
+    \item \textbf{utils}: โฟลเดอร์ที่เก็บไฟล์ utility functions
+\end{itemize}
 
-% \texttt{test ทดสอบฟอนต์ teletype ภาษาไทย}
+\section{Installation Guide}
+\subsection{Clone the Project from GitHub}
+\begin{verbatim}
+git clone https://github.com/259492-ProjectBox/frontend-projectbox.git
+cd <repository-directory>
+\end{verbatim}
 
-% \textbf{ตัวหนา serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}
+\subsection{Install Dependencies}
+\begin{verbatim}
+npm install
+\end{verbatim}
 
-% \textit{ตัวเอียง serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}
+\subsection{Set Up Environment Variables}
+สร้างไฟล์ \texttt{.env.local} และกำหนดค่าตัวแปรสภาพแวดล้อมตามที่ต้องการ
 
-% \textbf{\textit{ตัวหนาเอียง serif ภาษาไทย \textsf{sans serif ภาษาไทย} \texttt{teletype ภาษาไทย}}}
+\subsection{Run the Project in Development Mode}
+\begin{verbatim}
+npm run dev
+\end{verbatim}
 
-% \url{https://www.example.com/test_ทดสอบ_url}
+\subsection{Build Docker Image (Optional)}
+\begin{verbatim}
+docker build -t <image-name> .
+\end{verbatim}
 
+\section{Elysia (Auth\_service)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=100mm, keepaspectratio ]{pictures/elysia.jpg}
+    
+\end{figure}
+\subsection{Project Structure}
+รายละเอียดของไฟล์และโฟลเดอร์หลัก:
+\begin{itemize}
+    \item \textbf{.env}: ไฟล์นี้ใช้สำหรับเก็บค่าตัวแปรสภาพแวดล้อม เช่น ข้อมูลการเชื่อมต่อฐานข้อมูล และคีย์ลับต่างๆ
+    \item \textbf{Dockerfile}: ไฟล์นี้ใช้สำหรับสร้าง Docker image ของโปรเจกต์
+    \item \textbf{docker-compose.yml และ docker-compose.prod.yml}: ไฟล์นี้ใช้สำหรับการตั้งค่า Docker Compose เพื่อรันบริการต่างๆ ที่จำเป็นสำหรับโปรเจกต์
+    \item \textbf{drizzle/}: โฟลเดอร์นี้เก็บไฟล์ที่เกี่ยวข้องกับการจัดการฐานข้อมูล เช่น สคีมาและการย้ายข้อมูล
+    \item \textbf{src/}: โฟลเดอร์นี้เก็บโค้ดหลักของโปรเจกต์ แบ่งออกเป็นหลายโฟลเดอร์ย่อย เช่น controllers, dtos, middleware, repositories, services
+    \item \textbf{types/}: โฟลเดอร์นี้เก็บไฟล์ที่ประกาศประเภทข้อมูลต่างๆ
+    \item \textbf{utils/}: โฟลเดอร์นี้เก็บไฟล์ที่มีฟังก์ชันช่วยเหลือต่างๆ
+\end{itemize}
+
+\subsection{Installation and Usage}
+\begin{enumerate}
+    \item \textbf{ติดตั้ง Bun:}
+    \begin{verbatim}
+    Bun Installation 
+    https://bun.sh/docs/installation
+    \end{verbatim}
+    \item \textbf{ติดตั้ง Dependencies:}
+    \begin{verbatim}
+    bun install
+    \end{verbatim}
+    \item \textbf{ตั้งค่าฐานข้อมูล:}
+    \begin{itemize}
+        \item ตรวจสอบให้แน่ใจว่าไฟล์ .env มีค่าตัวแปรสภาพแวดล้อมที่ถูกต้องสำหรับการเชื่อมต่อฐานข้อมูล
+        \item รันคำสั่งต่อไปนี้เพื่อสร้างและตั้งค่าฐานข้อมูล:
+    \end{itemize}
+    \item \textbf{รันโปรเจกต์ในโหมดพัฒนา:}
+    \begin{verbatim}
+    bun run dev
+    \end{verbatim}
+\end{enumerate}
 \chapter{\ifenglish Manual\else คู่มือการใช้งานระบบ\fi}
 % begin itemize with number
 \begin{itemize}
-    \item \textbf{การใช้งานในส่วนของ User ทั่วไป}
+    \item \textbf{\Large การใช้งานในส่วนของ User ทั่วไป}
 \begin{enumerate}
     \item ทำการ Login เข้าสู่ระบบผ่าน CMU Account หรือ สามารถค้นหาโปรเจ็คได้โดยไม่ต้อง Login 
     % make it to call image
@@ -60,6 +150,11 @@
             \centering
             \includegraphics[width=130mm, keepaspectratio ]{pictures/project_box/pdf_search.png}
         \end{figure} 
+        \item Keyword Search ใช้การค้นหาโครงงานจาก Keyword
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=130mm, keepaspectratio ]{pictures/project_box/keyword_search.png}
+        \end{figure}
     \end{enumerate}
     \item ค้นหา Advisor Information สามารถค้นหาข้อมูลของอาจารย์ที่เกี่ยวข้องกับโครงงานได้
     \begin{enumerate}
@@ -80,7 +175,8 @@
         \includegraphics[width=130mm, keepaspectratio ]{pictures/project_box/create_project.png}
     \end{figure} 
 \end{enumerate}
-\item \textbf{การใช้งานในส่วนของเจ้าหน้าที่ปะจำสาขา Program Admin}
+\newpage
+\item \textbf{\Large การใช้งานในส่วนของเจ้าหน้าที่ปะจำสาขา Program Admin}
 \begin{figure}[H]
     \centering
     \includegraphics[width=130mm, keepaspectratio ]{pictures/project_box/program_admin_dashboard.png}
@@ -161,8 +257,8 @@
     \end{figure}   
 \end{enumerate}
 \newpage
-\item \textbf{ผู้ดูแลระบบแพลตฟอร์ม (Super Admin): } สามารถจัดการข้อมูลของสาขาและโครงงานทั้งหมดในระบบ รวมถึงจัดการสิทธิ์ให้กับเจ้าหน้าที่ประจำสาขา
-\begin{figure}
+\item \textbf{\Large ผู้ดูแลระบบแพลตฟอร์ม (Super Admin): } สามารถจัดการข้อมูลของสาขาและโครงงานทั้งหมดในระบบ รวมถึงจัดการสิทธิ์ให้กับเจ้าหน้าที่ประจำสาขา
+\begin{figure}[H]
     \centering
     \includegraphics[width=130mm, keepaspectratio ]{pictures/project_box/super_admin.png}
 \end{figure}
