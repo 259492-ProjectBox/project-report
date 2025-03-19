@@ -77,8 +77,8 @@ docker build -t <image-name> .
 \begin{figure}[H]
     \centering
     \includegraphics[width=100mm, keepaspectratio ]{pictures/elysia.jpg}
-    
 \end{figure}
+
 \subsection{Project Structure}
 รายละเอียดของไฟล์และโฟลเดอร์หลัก:
 \begin{itemize}
@@ -112,6 +112,104 @@ docker build -t <image-name> .
     bun run dev
     \end{verbatim}
 \end{enumerate}
+
+\section{Golang Project (Project\_service)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=100mm, keepaspectratio ]{pictures/golang.png}
+\end{figure}
+\subsection{Project Structure}
+รายละเอียดของไฟล์และโฟลเดอร์หลัก:
+\begin{itemize}
+    \item \textbf{.env.example}: ไฟล์นี้ใช้สำหรับเป็นตัวอย่างไฟล์สำหรับไฟล์ .env ในการเก็บค่าตัวแปรสภาพแวดล้อม เช่น ข้อมูลการเชื่อมต่อฐานข้อมูล และคีย์ลับต่างๆ
+    \item \textbf{Dockerfile}: ไฟล์นี้ใช้สำหรับสร้าง Docker image ของโปรเจกต์
+    \item \textbf{docker-compose.yml และ docker-compose.prod.yml}: ไฟล์นี้ใช้สำหรับการตั้งค่า Docker Compose เพื่อรันบริการต่างๆ ที่จำเป็นสำหรับโปรเจกต์
+    \item \textbf{configs/}: โฟลเดอร์นี้เก็บ config ของ โปรเจกต์
+    \item \textbf{db/}: โฟลเดอร์นี้เก็บไฟล์ที่เกี่ยวข้องกับการจัดการฐานข้อมูล เช่น สคีมาและการย้ายข้อมูล การเชื่อมต่อฐานข้อมูลต่างๆ
+    \item \textbf{docs/}: โฟลเดอร์นี้เก็บไฟล์ API Documentation ของโปรเจกต์
+    \item \textbf{routers/}: โฟลเดอร์นี้เก็บไฟล์ router ของโปรเจกต์เพื่อ routing request จาก client
+    \item \textbf{handlers/}: โฟลเดอร์นี้เก็บไฟล์ handler ของโปรเจกต์สำหรับรับส่ง request จาก client
+    \item \textbf{models/}: โฟลเดอร์นี้เก็บไฟล์โมเดลต่างๆ
+    \item \textbf{services/}: โฟลเดอร์นี้เก็บไฟล์ที่เกี่ยวข้องกับการจัดการ logic ของโปรเจกต์
+    \item \textbf{repositories/}: โฟลเดอร์นี้เก็บไฟล์ที่เกี่ยวข้องกับการจัดการข้อมูลในฐานข้อมูล
+    \item \textbf{queues/}: โฟลเดอร์นี้เก็บไฟล์ที่เกี่ยวข้องกับการจัดการ queue ของโปรเจกต์
+    \item \textbf{utils/}: โฟลเดอร์นี้เก็บไฟล์ที่มีฟังก์ชันช่วยเหลือต่างๆ
+\end{itemize}
+
+\subsection{Installation and Usage}
+\begin{enumerate}
+    \item \textbf{ติดตั้ง Golang:}
+    \begin{verbatim}
+    Golang Installation 
+    https://go.dev/doc/install
+    \end{verbatim}
+    \item \textbf{ติดตั้ง Dependencies:}
+    \begin{verbatim}
+    go mod tidy
+    \end{verbatim}
+    \item \textbf{ติดตั้ง Dependencies เพิ่มเติม:}
+    \begin{itemize}
+        \item go install github.com/air-verse/air@latest
+        \item go install github.com/swaggo/swag/cmd/swag@latest:
+        \item scoop install poppler:
+    \end{itemize}
+    \item \textbf{ตั้งค่าฐานข้อมูล:}
+    \begin{itemize}
+        \item ตรวจสอบให้แน่ใจว่าไฟล์ .env มีค่าตัวแปรสภาพแวดล้อมที่ถูกต้องสำหรับการเชื่อมต่อฐานข้อมูล
+        \item รันคำสั่งต่อไปนี้เพื่อสร้าง container ของฐานข้อมูล:
+        \begin{verbatim}
+        docker compose up -d
+        \end{verbatim}
+    \end{itemize}
+    \item \textbf{รันโปรเจกต์:}
+    \begin{verbatim}
+    air
+    \end{verbatim}
+\end{enumerate}
+
+\section{Java Project (Search\_service)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=100mm, keepaspectratio ]{pictures/springboot.png}
+\end{figure}
+\subsection{Project Structure}
+รายละเอียดของไฟล์และโฟลเดอร์หลัก:
+\begin{itemize}
+    \item \textbf{configs/}: โฟลเดอร์นี้เก็บ config ของ โปรเจกต์ เช่น Cors, RabbitMQ
+    \item \textbf{consumers/}: โฟลเดอร์นี้เก็บไฟล์ที่เกี่ยวข้องกับการ consume message จาก Message Broker เช่น RabbitMQ
+    \item \textbf{controllers/}: โฟลเดอร์นี้เก็บไฟล์ handler ของโปรเจกต์สำหรับรับส่ง request จาก client
+    \item \textbf{db/}: โฟลเดอร์นี้เก็บไฟล์ที่เกี่ยวข้องกับการจัดการฐานข้อมูล เช่น การเชื่อมต่อฐานข้อมูลต่างๆ
+    \item \textbf{models/}: โฟลเดอร์นี้เก็บไฟล์โมเดลต่างๆ
+    \item \textbf{dtos/}: โฟลเดอร์นี้เก็บไฟล์ dto สำหรับการจัดการสร้าง object ของโปรเจกต์
+    \item \textbf{services/}: โฟลเดอร์นี้เก็บไฟล์ที่เกี่ยวข้องกับการจัดการ logic ของโปรเจกต์
+    \item \textbf{repositories/}: โฟลเดอร์นี้เก็บไฟล์ที่เกี่ยวข้องกับการจัดการข้อมูลในฐานข้อมูล
+\end{itemize}
+
+\subsection{Installation and Usage}
+\begin{enumerate}
+    \item \textbf{ติดตั้ง Java:}
+    \begin{verbatim}
+    Java Installation 
+    https://www.java.com/en/download/help/windows_manual_download.html
+    \end{verbatim}
+    \item \textbf{ติดตั้ง Dependencies:}
+    \begin{verbatim}
+    mvn clean install
+    \end{verbatim}
+    \item \textbf{ตั้งค่าฐานข้อมูล:}
+    \begin{itemize}
+        \item ตรวจสอบให้แน่ใจว่าไฟล์ src/main/resources/application-dev.properties มีค่าตัวแปรสภาพแวดล้อมที่ถูกต้องสำหรับการเชื่อมต่อฐานข้อมูล
+        \item รันคำสั่งต่อไปนี้เพื่อสร้าง container ของฐานข้อมูล:
+        \begin{verbatim}
+        docker compose up -d
+        \end{verbatim}
+    \end{itemize}
+    \item \textbf{รันโปรเจกต์:}
+    \begin{verbatim}
+    mvn spring-boot:run
+    \end{verbatim}
+\end{enumerate}
+
 \chapter{\ifenglish Manual\else คู่มือการใช้งานระบบ\fi}
 % begin itemize with number
 \begin{itemize}
@@ -231,7 +329,7 @@ docker build -t <image-name> .
         \caption{กำหนดสิ่งที่นักศึกษาต้องส่งในโครงงานของแต่ละสาขา เช่น รายงาน, โค้ด, ฯลฯ}
     \end{figure}
     \newpage
-    \item \textbf{จัดการตณาอาจารย์ในสาขา (Manage Staff): } เจ้าหน้าที่สามารถจัดการข้อมูลของอาจารย์ในสาขาได้
+    \item \textbf{จัดการคณาอาจารย์ในสาขา (Manage Staff): } เจ้าหน้าที่สามารถจัดการข้อมูลของอาจารย์ในสาขาได้
     \begin{figure}[H]
         \centering
         \includegraphics[width=100mm, keepaspectratio ]{pictures/project_box/staff_list.png}
