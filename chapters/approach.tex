@@ -147,5 +147,46 @@
   \item \textbf{user\_roles} ตารางนี้จะแสดงถึงความสัมพันธ์ของผู้ใช้งานกับตำแหน่งของผู้ใช้งานในโปรแกรมหรือหลักสูตรนั้นๆ
 \end{itemize}
 \subsection{Project Service}
+\hspace{1.27cm} \raggedright ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการข้อมูลของทั่วไปและข้อมูลโปรเจค โดยส่วนนี้จะถูกพัฒนาด้วย Go \& Gin 
+\subsubsection{Database Schema}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pictures/project_db.JPG}
+  \caption{รูปภาพแสดง Database Schema ของ Project Service}
+  \label{fig:project_service}
+\end{figure}
+\textbf{\ifenglish Database Schema\else โครงสร้างของฐานข้อมูล\fi}
+\begin{itemize}
+  \item \textbf{projects} ตารางนี้จะเป็นตารางที่เก็บข้อมูล project
+  \item \textbf{students} ตารางนี้จะเป็นตารางที่เก็บข้อมูลของนักศึกษา
+  \item \textbf{staffs} ตารางนี้จะเป็นตารางที่เก็บข้อมูลของคณาจารย์และบุคลากร
+  \item \textbf{configs} ตารางนี้จะเป็นตารางที่เก็บข้อมูล config ของระบบ
+  \item \textbf{keywords} ตารางนี้จะเป็นตารางที่เก็บข้อมูลของ keyword ที่ใช้ในการค้นหา
+  \item \textbf{project\_staffs} ตารางนี้จะแสดงถึงความสัมพันธ์ของ project กับ staff โปรแกรมหรือหลักสูตรนั้นๆ
+  \item \textbf{project\_students} ตารางนี้จะแสดงถึงความสัมพันธ์ของ project กับ นักศึกษาที่ต้องการส่งงาน
+  \item \textbf{project\_keywords} ตารางนี้จะแสดงถึงความสัมพันธ์ของ project กับ keyword ที่ใช้ในการค้นหา
+  \item \textbf{project\_resource\_configs} ตารางนี้จะแสดงถึงความสัมพันธ์ของ project กับ ไฟล์ที่นักศึกษาต้องส่ง
+\end{itemize}
 \subsection{Search Service}
-
+\hspace{1.27cm} \raggedright ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการดึงข้อมูล project โดยส่วนนี้จะถูกพัฒนาด้วย Java Sprint Boot \& Elasticsearch
+\textbf{\ifenglish Elasticsearch Index\else โครงสร้างของฐานข้อมูล\fi}
+\begin{itemize}
+  \item \textbf{Project Index} ส่วนนี้จะเป็นส่วนที่เก็บข้อมูลของ project
+  \begin{itemize}
+    \item \textbf{id} หมายถึงรหัสหรือไอดีที่ไม่ซ้ำกันของโปรเจคที่ใช้ในการระบุโปรเจคในระบบ
+    \item \textbf{projectNo} ชื่อหรือหมายเลขของโปรเจค ใช้ในการอ้างอิงโปรเจคนี้ในระบบ
+    \item \textbf{titleTH} คำอธิบายหรือชื่อเรื่องของโปรเจคในภาษาไทย
+    \item \textbf{titleEN} คำอธิบายหรือชื่อเรื่องของโปรเจคในภาษาอังกฤษ
+    \item \textbf{abstractText} คำอธิบายสั้น ๆ เกี่ยวกับโปรเจคที่สรุปเนื้อหาหรือวัตถุประสงค์ของโปรเจค
+    \item \textbf{academicYear} ปีการศึกษาที่โปรเจคนี้ถูกทำขึ้นหรือเริ่มต้น
+    \item \textbf{semester} ภาคการศึกษาที่โปรเจคนี้ถูกทำขึ้น (เช่น ภาคการศึกษาที่ 1 ,ภาคการศึกษาที่ 2 หรือ ภาคฤดูร้อน)
+    \item \textbf{sectionId} หมายเลขหรือรหัสของกลุ่มที่ทำโปรเจค (เช่น หมู่หรือกลุ่มของนักศึกษาที่ทำโปรเจคนี้)
+    \item \textbf{programId} หมายเลขหรือรหัสของหลักสูตรการศึกษาที่โปรเจคนี้เกี่ยวข้อง
+    \item \textbf{program} หลักสูตรที่เกี่ยวข้องกับโปรเจคนี้
+    \item \textbf{staffs} รายชื่อของบุคลากรที่เกี่ยวข้องกับโปรเจค เช่น อาจารย์หรือผู้เชี่ยวชาญที่ช่วยดูแลโปรเจค
+    \item \textbf{members} รายชื่อของสมาชิกในโปรเจค หรือผู้ที่มีส่วนร่วมในโปรเจค
+    \item \textbf{projectResources} แหล่งข้อมูลหรือทรัพยากรที่ใช้ในโปรเจค เช่น ไฟล์, โค้ด
+    \item \textbf{isPublic} ระบุว่าโปรเจคนี้เปิดให้สาธารณชนเข้าถึงหรือไม่ ถ้าเป็น "true" หมายถึงโปรเจคนี้เปิดให้เข้าถึงได้ทั่วไป
+    \item \textbf{keywords} คำสำคัญที่เกี่ยวข้องกับโปรเจค ช่วยให้โปรเจคนี้สามารถค้นหาได้ง่ายขึ้นจากคำค้นที่ตรงกับเนื้อหาของโปรเจค
+  \end{itemize}
+\end{itemize}
