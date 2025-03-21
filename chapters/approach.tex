@@ -45,14 +45,70 @@
   \end{itemize}
 \end{enumerate}
 
-\section{Frontend (Waiting for edit)}
+\section{Frontend}
 \hspace{1.27cm} \raggedright ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลของระบบ โดยส่วนนี้จะถูกพัฒนาด้วย Next.js โดยส่วนนี้จะถูกแบ่งออกเป็นส่วนย่อยๆ ดังนี้
 \begin{itemize}
-  \item \textbf{Home Page} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าแรกของเว็บไซต์
-  \item \textbf{Project Page} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าโครงงาน
-  \item \textbf{Search Page} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าค้นหา
-  \item \textbf{Profile Page} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าโปรไฟล์
-  \end{itemize}
+  \item \textbf{Dashboard} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าแรกของเว็บไซต์หลังทำการ Login เข้าสู่ระบบ
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pictures/project_box/dashboard.png}
+    \caption{รูปภาพแสดงหน้าแรกของเว็บไซต์}
+    \label{fig:dashboard}
+  \end{figure}
+  \item \textbf{Advisor Info} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าข้อมูลของอาจารย์ที่ปรึกษา
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pictures/project_box/advisor_info.png}
+    \caption{รูปภาพแสดงหน้าข้อมูลของอาจารย์ที่ปรึกษา}
+    \label{fig:advisor_info}
+  \end{figure}
+  \item \textbf{Search} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการแสดงผลหน้าค้นหา สามารถเลือกประเภทของการค้นหาได้
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pictures/project_box/keyword_search.png}
+    
+  \end{figure}
+  \item \textbf{Manage Student} ส่วนนี้คือหน้าที่ใช้ในการจัดการข้อมูลของนักศึกษาหรือเพิ่มโครงงานเข้าไปในระบบ
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pictures/project_box/manage_student.png}
+    \caption{รูปภาพแสดงหน้าจัดการข้อมูลของนักศึกษา}
+    \label{fig:manage_student}
+    
+  \end{figure}
+
+  \item \textbf{Manage Submission} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการข้อมูลของการส่งงานของนักศึกษา
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pictures/project_box/manage_submission.png}
+    \caption{รูปภาพแสดงหน้าจัดการข้อมูลของการส่งงานของนักศึกษา}
+    \label{fig:manage_submission}
+\end{figure}
+
+\item \textbf{Manage Keyword} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการข้อมูลของ Keyword ที่ใช้ในการค้นหา
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pictures/project_box/manage_keyword.png}
+  \caption{รูปภาพแสดงหน้าจัดการข้อมูลของ Keyword ที่ใช้ในการค้นหา}
+  \label{fig:manage_keyword}
+\end{figure}
+\item \textbf{Manage Staff} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการข้อมูลของบุคลากร
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pictures/project_box/manage_staff.png}
+  \caption{รูปภาพแสดงหน้าจัดการข้อมูลของบุคลากร}
+  \label{fig:manage_staff}
+\end{figure}
+\item \textbf{Super Admin} ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการข้อมูลของผู้ดูแลระบบ
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{pictures/project_box/super_admin.png}
+  \caption{รูปภาพแสดงหน้าจัดการข้อมูลของผู้ดูแลระบบ}
+  \label{fig:super_admin}
+  
+\end{figure}
+\end{itemize}
+
 \section{Reverse Proxy}
 \hspace{1.27cm} \raggedright ส่วนนี้เป็นส่วนที่ทำหน้าที่ในการจัดการการเชื่อมต่อระหว่าง Frontend และ Backend โดยส่วนนี้จะถูกพัฒนาด้วย Nginx Proxy Manager(NPM)\cite{npm} มีหน้าที่คือ
 การแปลง ip addres ของ server ให้เป็น domain name ยกตัวอย่างเช่น แปลง IP Addres
